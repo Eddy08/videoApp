@@ -6,6 +6,7 @@ let q="harsh";
 let userInput;
 let gettingVideo;
 let newResult="📷";
+let flag =0;
 function setup() {
   // Main Method
 
@@ -22,6 +23,8 @@ function setup() {
       console.log(data);
       localStorage.setItem('api_data',JSON.stringify(data));
       newResult+=JSON.stringify(data);
+      
+      flag=1;
     },'jsonp')
 
   }

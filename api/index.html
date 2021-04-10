@@ -16,6 +16,11 @@
     input.main-search{
       width: 100vw;
     }
+    article{
+      display: grid;
+      grid-template-rows: 1fr 500px 1fr;
+      grid-template-rows: 1fr 500px 1fr;
+    }
   </style>
   <script src="p5.js"></script>
   <!-- <script src="../addons/p5.sound.js"></script> -->
@@ -38,7 +43,9 @@
     <section id="result">
 📹
     </section>
+<article id="video">
 
+</article>
   
   </main>
   <footer>
@@ -48,15 +55,56 @@
 <script>
   if(localStorage.getItem('api_data')!=null){
 newResult=localStorage.getItem('api_data').toString();
-localStorage.setItem('api_data',newResult.concat(localStorage.getItem('api_data')))
 console.log(newResult);
     document.getElementById("result").innerText=localStorage.getItem('api_data').toString();
+  
+let finalResult= JSON.parse(localStorage.getItem('api_data'));
+console.log(typeof finalResult)
+
+ Object.entries(finalResult).forEach(([key,value])=>{
+  //  console.log(typeof key+" "+typeof value)
+  //  console.log(`${key} ${value}`)
+
+  // console.log(typeof finalResult);
+
+  if(key==="items"){
+
+    Object.entries(value).forEach(([key1,value1])=>{
+  //  console.log(`${key1} ${value1}`)
+  console.log( value)
+        Object.entries(value1).forEach(([key2,value2])=>{
+         console.log(value2)
+          // if(value2==="items"){
+          //   console.log(value2)
+          // }
+        })
+
+    })
   }
+ });
+  // let videoId=items.id.videoId;
+  // let videoDesc=items.snippet.title;`
+  // video = `
+  // <iframe width="560" height="315" 
+  // src="https://www.youtube.com/embed/`+videoId+` 
+  // title=`+videoDesc+` 
+  // frameborder="0" allow="accelerometer;
+  //  autoplay; clipboard-write; encrypted-media;
+  //   gyroscope; picture-in-picture" allowfullscreen>
+  //   </iframe>
+  // `
+  // console.log(videoId+" "+videoDesc+" "+video);
+}
+
+  
  
    setInterval(() => {
     let value =document.getElementById("header");
 
-
+    if(flag==1){
+      document.getElementById("result").innerText=localStorage.getItem('api_data').toString();
+      flag=0;
+    }
     
     let lights=["🔴","🟡","🟢"];
     value.innerText=lights[Math.floor(Math.random()*3)]
