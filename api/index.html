@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play 🟢</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    .main-search{
+      font-size: 3em;
+    }
+    input.main-search{
+      width: 100vw;
+    }
+  </style>
+  <script src="p5.js"></script>
+  <!-- <script src="../addons/p5.sound.js"></script> -->
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <h1 id="header">🚦🔴 🟢 🟡 🟠</h1>
+  </header>
+  <main>
+   
+      
+        <input type="text" class="main-search" id="userInput" placeholder="Enter any Keyword 💎">
+        <input type="text" class="main-search" id="userResult" placeholder="Number of Results 🏴">
+ 
+        <button class="main-search" type="submit" onclick="(new setup()).gettingVideo()">Go🏌️‍♀️</button>
+     
+    <section id="result">
+📹
+    </section>
+
+  
+  </main>
+  <footer>
+
+  </footer>
+</body>
+<script>
+  if(localStorage.getItem('api_data')!=null){
+newResult=localStorage.getItem('api_data').toString();
+localStorage.setItem('api_data',newResult.concat(localStorage.getItem('api_data')))
+console.log(newResult);
+    document.getElementById("result").innerText=localStorage.getItem('api_data').toString();
+  }
+ 
+   setInterval(() => {
+    let value =document.getElementById("header");
+
+
+    
+    let lights=["🔴","🟡","🟢"];
+    value.innerText=lights[Math.floor(Math.random()*3)]
+     document.title  ="Play " +lights[Math.floor(Math.random()*3)]
+    
+    }, 300);
+
+  </script>
+</html>
