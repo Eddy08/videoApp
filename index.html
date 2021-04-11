@@ -70,10 +70,18 @@
 
   </main>
   <footer>
-
+    <details>
+      <summary>To add a new Key 🔑🔐 👇</summary>
+      <p>New Key 🔑🔐</p>
+      <p>
+        <input type="text" id="newKeyValue" placeholder="Your New Key 🔐"><button type="submit" onclick="(new setup()).addNewKey()">Upload Locally🔓</button>
+      </p>
+    </details>
   </footer>
 </body>
 <script>
+
+
   if (localStorage.getItem('api_data') != null) {
     newResult = localStorage.getItem('api_data').toString();
     console.log(newResult);
