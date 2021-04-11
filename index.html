@@ -60,6 +60,10 @@
     </p>
 
   </details>
+  <details>
+    <summary>API 🔥</summary>
+<p id="result2"></p>
+  </details>
     <article id="video">
       
     </article>
@@ -74,7 +78,7 @@
     newResult = localStorage.getItem('api_data').toString();
     console.log(newResult);
     document.getElementById("result").innerText = localStorage.getItem('api_data').toString();
-
+    document.getElementById("result2").innerText=localStorage.getItem('debugURL').toString();
     let finalResult = JSON.parse(localStorage.getItem('api_data'));
     // console.log(typeof finalResult)
 
