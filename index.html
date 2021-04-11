@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play 🟢</title>
+  <style>
+    *{
+      box-sizing: inherit;
+    }
+    html{
+      box-sizing: border-box;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+    width:100vw;
+    }
+
+    .main-search {
+      font-size: 3em;
+    }
+
+    input.main-search {
+      width: 90%;
+    }
+
+    article {
+      height:100%;
+      
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(500px,5fr));
+ 
+
+    }
+
+  </style>
+  <script src="p5.js"></script>
+  <!-- <script src="../addons/p5.sound.js"></script> -->
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <h1 id="header">🚦🔴 🟢 🟡 🟠</h1>
+  </header>
+  <main>
+
+
+    <input type="text" class="main-search" id="userInput" placeholder="Enter any Keyword 💎">
+    <input type="text" class="main-search" id="userResult" placeholder="Number of Results 🏴">
+
+    <button class="main-search" type="submit" onclick="(new setup()).gettingVideo()">Go🏌️‍♀️</button>
+<details>
+  <summary> Debug Info 🐛  </summary>
+    <p id="result">
+      📹
+    </p>
+
+  </details>
+    <article id="video">
+      
+    </article>
+
+  </main>
+  <footer>
+
+  </footer>
+</body>
+<script>
+  if (localStorage.getItem('api_data') != null) {
+    newResult = localStorage.getItem('api_data').toString();
+    console.log(newResult);
+    document.getElementById("result").innerText = localStorage.getItem('api_data').toString();
+
+    let finalResult = JSON.parse(localStorage.getItem('api_data'));
+    // console.log(typeof finalResult)
+
+    //*************************************************
+
+
+    //***************************************************
+
+
+
+
+
+
+
+
+    Object.entries(finalResult).forEach(([key, value]) => {
+      //  console.log(typeof key+" "+typeof value)
+      //  console.log(`${key} ${value}`)
+
+      // console.log(typeof finalResult);
+
+      if (key === "items") {
+
+        Object.entries(value).forEach(([key1, value1]) => {
+          //  console.log(`${key1} ${value1}`)
+          // console.log( key1)
+          Object.entries(value1).forEach(([key2, value2]) => {
+            //  console.log(key2)
+
+            if (key2 === "id") {
+              // console.log(value2)
+
+              let videoId;
+              // let channelId;
+              let videoTitle;
+              Object.entries(value2).forEach(([key3, value3]) => {
+                if (key3 === "videoId") {
+                  videoId = value3;
+
+                }
+                // if(key3==="channelId"){
+
+                // }
+                if (key3 === "snippet") {
+                  videoTitle = value3;
+                }
+
+              })
+              if(videoId!=null){
+                let videoPlayer = `
+  <iframe width="100%" height="100%" 
+  src="https://www.youtube.com/embed/`+ videoId +`
+" allowfullscreen>
+    </iframe>
+  `;
+                console.log(videoPlayer)
+            document.getElementById('video').innerHTML+=videoPlayer;
+              }
+            }
+          })
+
+        })
+      }
+    });
+
+
+
+
+  }
+
+
+
+  setInterval(() => {
+    let value = document.getElementById("header");
+
+    if (flag == 1) {
+      document.getElementById("result").innerText = localStorage.getItem('api_data').toString();
+      flag = 0;
+    }
+
+    let lights = ["🔴", "🟡", "🟢"];
+    value.innerText = lights[Math.floor(Math.random() * 3)]
+    document.title = "Play " + lights[Math.floor(Math.random() * 3)]
+
+  }, 300);
+
+</script>
+
+</html>
