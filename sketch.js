@@ -18,7 +18,6 @@ function setup() {
   // Main Method
 
 // console.log(key+" "+key1+" "+key2)
-console.log(process)
 this. addNewKey= function(){
   // console.log(newKey)
   newKey=select('#newKeyValue');
